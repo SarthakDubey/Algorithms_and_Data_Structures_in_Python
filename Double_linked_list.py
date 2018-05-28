@@ -31,4 +31,3 @@ class DoubleLinkedList(object):
     def insert_left(self, data):
         new_node = Node(data)
         new_node.set_prev(self.head)
-        

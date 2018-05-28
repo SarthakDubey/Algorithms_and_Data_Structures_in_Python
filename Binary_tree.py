@@ -41,7 +41,7 @@ class BinaryTree(object):
         elif tree.leftnode or tree.rightnode is not None:
             return max(self._size(tree.leftnode, count), self._size(tree.rightnode, count)) + 1
         else:
-            return count
+            return count+1
 
     def delete(self):
         self.root = None
@@ -58,19 +58,44 @@ class BinaryTree(object):
             self._print_inorder(tree.leftnode)
             print('{}'.format(tree.data), end=" ")
             self._print_inorder(tree.rightnode)
-            
+           
     def print_preorder(self):
-        pass
+        if self.root:
+            self._print_preorder(self.root)
+        else:
+            assert ValueError('Empty tree/node')
     
     def _print_preorder(self, tree):
-        pass
+        print('{}'.format(tree.data), end=" ")
+        if tree.leftnode:
+            self._print_preorder(tree.leftnode)
+        if tree.rightnode:
+            self._print_preorder(tree.rightnode)
+
+
+    def print_postorder(self):
+            if self.root:
+                self._print_postorder(self.root)
+            else:
+                assert ValueError('Empty tree/node')
+
+    def _print_postorder(self, tree):
+            if tree.leftnode:
+                self._print_postorder(tree.leftnode)
+            if tree.rightnode:
+                self._print_postorder(tree.rightnode)
+            print('{}'.format(tree.data), end=" ")
 
 def main():
     tree = BinaryTree()
-    for _ in range(20):
-        tree.insert(np.random.randint(1,50))
+    for _ in range(30):
+       tree.insert(np.random.randint(1,50))
     print('The height of tree is: {}'.format(tree.size()))
     tree.print_inorder()
+    print()
+    tree.print_preorder()
+    print()
+    tree.print_postorder()
     
 if __name__ == '__main__':
     main()
