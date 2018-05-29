@@ -1,5 +1,6 @@
-#An attempt to build a graph class with basic functions to understand add, delete, BFS, DFS methods
+# An attempt to build a graph class with basic functions to understand add, delete, BFS, DFS methods
 import collections
+
 
 class Graph(object):
     def __init__(self):
@@ -7,16 +8,16 @@ class Graph(object):
 
     def addEdge(self, u, v):
         self.graph[u].append(v)
-    
+
     def _DFS(self, v, visited):
         visited[v] = True
         print('{}, '.format(v))
         for i in self.graph[v]:
             if visited[i] == False:
                 self._DFS(i, visited)
-    
+
     def DFS(self, v):
-        visited = [False]*(len(self.graph))
+        visited = [False] * (len(self.graph))
         self._DFS(v, visited)
 
 

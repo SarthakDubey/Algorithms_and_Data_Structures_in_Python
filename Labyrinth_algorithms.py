@@ -1,4 +1,4 @@
-from collections import namedtuple, defaultdict, deque
+from collections import namedtuple, deque
 
 graph_namedtuple = namedtuple('graph', ('x', 'y'))
 
@@ -16,26 +16,30 @@ simplemaze = ([
     [1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
 
+
 def simplemaze_to_adjacency_list(maze, verbose=0):
-    if maze is None: assert ValueError("Maze empty")
-    graph_dict = {(i, j): [] for j in range(len(maze[0])) for i in range(len(maze)) if not maze[i][j]}
+    if maze is None:
+        assert ValueError("Maze empty")
+    graph_dict = {(i, j): [] for j in range(len(maze[0]))
+                  for i in range(len(maze)) if not maze[i][j]}
     if verbose:
         for i, j in graph_dict.keys():
-            if i < len(maze) - 1 and not maze[i+1][j]:
-                graph_dict[(i,j)].append(('S', (i+1, j)))
-                graph_dict[(i+1, j)].append(('N', (i, j)))
-            if j < len(maze[0]) - 1 and not maze[i][j+1]:
-                graph_dict[(i, j)].append(('E',(i, j+1)))
-                graph_dict[(i, j+1)].append(('W', (i, j)))
+            if i < len(maze) - 1 and not maze[i + 1][j]:
+                graph_dict[(i, j)].append(('S', (i + 1, j)))
+                graph_dict[(i + 1, j)].append(('N', (i, j)))
+            if j < len(maze[0]) - 1 and not maze[i][j + 1]:
+                graph_dict[(i, j)].append(('E', (i, j + 1)))
+                graph_dict[(i, j + 1)].append(('W', (i, j)))
     else:
         for i, j in graph_dict.keys():
-            if i < len(maze) - 1 and not maze[i+1][j]:
-                graph_dict[(i, j)].append((i+1, j))
-                graph_dict[(i+1, j)].append((i, j))
-            if j < len(maze[0]) - 1 and not maze[i][j+1]:
-                graph_dict[(i, j)].append((i, j+1))
-                graph_dict[(i, j+1)].append((i, j))
+            if i < len(maze) - 1 and not maze[i + 1][j]:
+                graph_dict[(i, j)].append((i + 1, j))
+                graph_dict[(i + 1, j)].append((i, j))
+            if j < len(maze[0]) - 1 and not maze[i][j + 1]:
+                graph_dict[(i, j)].append((i, j + 1))
+                graph_dict[(i, j + 1)].append((i, j))
     return graph_dict
+
 
 def BFS(maze, start, goal):
     graph = simplemaze_to_adjacency_list(maze, 1)
@@ -49,7 +53,7 @@ def BFS(maze, start, goal):
             continue
         visited.add(current)
         for direction, neighbor in graph[current]:
-            vertex_list.append((path+direction, neighbor))
+            vertex_list.append((path + direction, neighbor))
     return "No Way Found"
 
 
@@ -65,9 +69,8 @@ def DFS(maze, start, goal):
             continue
         visited.add(current)
         for direction, neighbor in graph[current]:
-            vertex_stack.append((path+direction, neighbor))
+            vertex_stack.append((path + direction, neighbor))
     return "No Way Found"
-
 
 
 print(BFS(simplemaze, (3, 1), (9, 10)))

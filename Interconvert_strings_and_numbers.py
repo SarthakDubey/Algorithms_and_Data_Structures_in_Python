@@ -13,11 +13,13 @@ def strtoint(x):
         '9': 9,
     }[x]
 
+
 def convert_strtoint(mystring):
     answer = 0
     for s in mystring:
-        answer = -answer if s == '-' else answer*10 + strtoint(s)
+        answer = -answer if s == '-' else answer * 10 + strtoint(s)
     return answer
+
 
 def convert_inttostr(x):
     is_negative = False
@@ -37,6 +39,7 @@ def main():
     print(convert_strtoint(demostring))
     demonumber = 12378614936542
     print(convert_inttostr(demonumber))
+
 
 if __name__ == '__main__':
     main()

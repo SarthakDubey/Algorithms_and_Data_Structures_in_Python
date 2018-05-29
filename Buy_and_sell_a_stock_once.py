@@ -7,8 +7,11 @@ def stock(daily_prices):
     print(maximum_profit)
     return
 
+
 def main():
     daily_prices = [310, 315, 275, 295, 260, 270, 290, 230, 255, 250]
     stock(daily_prices)
+
+
 if __name__ == '__main__':
     main()

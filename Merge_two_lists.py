@@ -5,21 +5,23 @@ class Node(object):
 
     def get_data(self):
         return self.data
-    
+
     def get_next(self):
         return self.next_node
 
     def set_next(self, new_next):
         self.next_node = new_next
-    
+
+
 class Linkedlist(object):
     def __init__(self, head=None):
-        self.head=head
+        self.head = head
 
     def insert(self, data):
         new_node = Node(data)
         new_node.set_next(self.head)
         self.head = new_node
+
 
 def merge(L1, L2):
     L3 = Linkedlist()
@@ -32,6 +34,7 @@ def merge(L1, L2):
             L2.head = L2.head.get_next()
     L3.insert(L1.head.get_data() or L2.head.get_data())
     return L3
+
 
 def main():
     L1 = Linkedlist()
@@ -46,5 +49,6 @@ def main():
         print(L3.head.get_data())
         L3.head = L3.head.get_next()
 
+
 if __name__ == '__main__':
-    main() 
+    main()
