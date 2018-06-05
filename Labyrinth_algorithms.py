@@ -72,6 +72,22 @@ def DFS(maze, start, goal):
             vertex_stack.append((path + direction, neighbor))
     return "No Way Found"
 
+def Topological_sort_helper(graph, visited, i, stack):
+    visited[i]=True
+    for node in graph[i]:
+        if visited[i]==False:
+            Topological_sort_helper(graph, visited, node, stack)
+    stack.insert(0, i)
+
+
+def Topological_sort(graph):
+    visited = False*len(graph)
+    stack = []
+    for i in range(len(graph)):
+        if visited[i] == False:
+            Topological_sort_helper(graph, visited, i, stack)
+    print(stack)
+
 
 print(BFS(simplemaze, (3, 1), (9, 10)))
 print(DFS(simplemaze, (3, 1), (9, 10)))

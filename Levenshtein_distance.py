@@ -19,8 +19,8 @@ def levenshtein(string1, string2):
 
 
 def main():
-    string1 = ""
-    string2 = "saturday"
+    string1 = "saturday"
+    string2 = "sunday"
     print(levenshtein(string1, string2))
 
 
