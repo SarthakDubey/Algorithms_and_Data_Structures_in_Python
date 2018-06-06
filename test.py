@@ -1,35 +1,34 @@
-import math
+class Node(object):
+    def __init__(self, data=None, next_node=None):
+        self.data = data
+        self.next = next_node
 
-def num_of_ways(n, m):
-    a, b, c = math.factorial(
-        m + n - 2), math.factorial(m - 1), math.factorial(n - 1)
-    d = b * c
-    e = a / d
-    return e
+def has_cycle(head):
+    check = set()
+    while head is not None:
+        if head.data in check:
+            return False
+        else:
+            check.add(head.data)
+            head = head.next
+    return True
 
-
-print(num_of_ways(5, 5))
-
-
-import heapq as hq
-
-listed = [1, 3, 5, 7, 9]
-tupled = (1, 3, 5, 7, 9)
-dictionary = {1, 3, 5, 7, 9}
-sets = set()
-sets.add(1)
-hq.heapify(listed)
-print(hq.nlargest(1, listed))
-#hq._heapify_max(listed)
-print(hq.heappop(listed))
-from collections import defaultdict
-
-alpha = defaultdict(list)
-alpha[1] = 20
-from collections import Counter
+def addTwoNumbers(l1, l2):
+        if l1 or l2:
+            
 
 
-x = {'foo':'bar'}
-y = {'baz': x}
-z = y['baz']['foo']
-print(z)
+
+
+L1 = Node(1)
+L2 = Node(2)
+L3 = Node(3)
+L4 = Node(4)
+L5 = Node(5)
+L6 = Node(9)
+L1.next = L2
+L2.next = L3
+L4.next = L5
+L5.next = L6
+#L5.next = L3
+print(addTwoNumbers(L1, L4))
