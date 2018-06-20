@@ -14,13 +14,13 @@ def levenshtein(string1, string2):
                 levenshtein_map[i][j] = min(
                     levenshtein_map[i - 1][j], levenshtein_map[i][j - 1],
                     levenshtein_map[i - 1][j - 1]) + 1
-
+    print(levenshtein_map)
     return levenshtein_map[len(string1)][len(string2)]
 
 
 def main():
-    string1 = "saturday"
-    string2 = "sunday"
+    string1 = "intention"
+    string2 = "execution"
     print(levenshtein(string1, string2))
 
 

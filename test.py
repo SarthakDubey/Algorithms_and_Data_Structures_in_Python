@@ -1,34 +1,37 @@
-class Node(object):
-    def __init__(self, data=None, next_node=None):
-        self.data = data
-        self.next = next_node
+def numIslands(grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        num_islands = 0
+        length, width = len(grid), len(grid[0])
+        visited = set()
+        queue = []
 
-def has_cycle(head):
-    check = set()
-    while head is not None:
-        if head.data in check:
-            return False
-        else:
-            check.add(head.data)
-            head = head.next
-    return True
+        def traverse(i, j):
+            adjacent = [
+                (i+di, j+dj) for di, dj in ((-1, 0), (0, 1), (1, 0), (0, -1))
+                if 0 <= i+di < length and 0 <= j+dj < width and grid[i+di][j+dj] == '1'
+            ]
+            return adjacent
+        
+        print(traverse(0, 0))
 
-def addTwoNumbers(l1, l2):
-        if l1 or l2:
-            
+        for i in range(length):
+            for j in range(width):
+                if grid[i][j] == "1" and (i, j) not in visited:
+                    queue.append((i, j))
+                    while queue:
+                        current_i, current_j = queue.pop()
+                        if (current_i, current_j) not in visited:
+                            visited.add((current_i, current_j))
+                        for a, b in traverse(current_i, current_j):
+                            queue.append((a, b))
+                    num_islands += 1
+
+        return num_islands
 
 
+numIslands([["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"],
+            ["1", "1", "0", "0", "0"], ["0", "0", "0", "0", "0"]])
 
-
-L1 = Node(1)
-L2 = Node(2)
-L3 = Node(3)
-L4 = Node(4)
-L5 = Node(5)
-L6 = Node(9)
-L1.next = L2
-L2.next = L3
-L4.next = L5
-L5.next = L6
-#L5.next = L3
-print(addTwoNumbers(L1, L4))
