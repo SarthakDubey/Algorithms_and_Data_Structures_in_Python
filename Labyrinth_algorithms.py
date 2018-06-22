@@ -1,4 +1,5 @@
 from collections import namedtuple, deque
+from heapq import heappop, heappush
 
 graph_namedtuple = namedtuple('graph', ('x', 'y'))
 
@@ -72,6 +73,18 @@ def DFS(maze, start, goal):
             vertex_stack.append((path + direction, neighbor))
     return "No Way Found"
 
+# def heuristic(cell, goal):
+#     return abs(cell[0] - goal[0]) + abs(cell[1] - goal[1])
+
+# def A_star(maze, start, goal):
+#     pr_queue = []
+#     heappush(pr_queue, (0+heuristic(start, goal), 0, '', start))
+#     visited = set()
+#     graph = simplemaze_to_adjacency_list(maze)
+#     while pr_queue:
+
+
+
 def Topological_sort_helper(graph, visited, i, stack):
     visited[i]=True
     for node in graph[i]:
@@ -91,3 +104,4 @@ def Topological_sort(graph):
 
 print(BFS(simplemaze, (3, 1), (9, 10)))
 print(DFS(simplemaze, (3, 1), (9, 10)))
+Topological_sort(simplemaze_to_adjacency_list(simplemaze, 1))
